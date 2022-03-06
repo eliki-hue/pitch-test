@@ -1,5 +1,5 @@
 from flask import Flask
-from config import DevConfig
+from config import config_options
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from app import views
@@ -23,7 +23,7 @@ def initializer(config_name):
 
     bootstrap.init_app()
     db.init_app(app)
-    
+
 
   
 
