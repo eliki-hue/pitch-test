@@ -35,6 +35,9 @@ class User:
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    def __repr__(self):
+        return f'User {self.username}'
+
 class Pitch(db.Model):
     __tablename__ = 'pitches'
 
@@ -42,6 +45,9 @@ class Pitch(db.Model):
     category =db.Column(db.String(255))
     sender = db.Column(db.String(255))
     pitch =db.column(db.String())
+
+
+
 
     def __repr__(self):
         return f'User {self.username}'
