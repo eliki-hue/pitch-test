@@ -16,3 +16,5 @@ def test():
 
 migrate = Migrate(app,db)
 manager.add_command('db', Migrate)
+
+@manager.shell

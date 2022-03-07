@@ -1,3 +1,4 @@
+from unicodedata import category
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -34,6 +35,13 @@ class User:
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+
+    id = db.Column(db.Integer, primary_key= True)
+    category =db.Column(db.String(255))
+    sender = db.Column(db.String(255))
+    pitch =db.column(db.String())
 
     def __repr__(self):
         return f'User {self.username}'
