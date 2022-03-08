@@ -17,7 +17,7 @@ login_manager.login_view = 'auth.login'
 
 
 db = SQLAlchemy()
-
+mail = Mail()
 
 
 
@@ -38,6 +38,9 @@ MAIL_PASSWORD =os.environ.get("mail_password")
 
 bootstrap.init_app(app)
 db.init_app(app)
+mail.init_app(app)
+
+
 
 
 from app import views
