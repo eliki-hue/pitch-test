@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    { % block content %}
+
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-2"></div>
@@ -22,10 +22,10 @@
                             <option value="product pitch">product pitch</option>
                             <option value="promotion pitch">promotion pitch</option>
                           </select>   
-                    </div>
+                    </div><br>
                       <div class="mb-3">
-                        <label for="pitch" class="form-label">Example textarea</label>
-                        <textarea class="form-control" id="pitch" name="pitch" rows="3"></textarea>
+                        <label for="pitch" class="form-label">enter a 1 minute (450 characters) pitch here</label>
+                        <textarea class="form-control" id="pitch" name="pitch" rows="5" cols="50" maxlength="450"></textarea>
                       </div>
                 </form>
                 
@@ -33,7 +33,5 @@
             <div class="col-md-2"></div>
         </div>
     </div>
-    {% endblock%}
+    {% endblock %}
     
-</body>
-</html>

@@ -65,3 +65,7 @@ def profile():
         return render_template('profile.html',user=user)
 
             
+@app.route('/pitchForm')
+def pitchForm():
+
+    return render_template('pitchForm.html')
