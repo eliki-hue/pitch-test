@@ -1,5 +1,6 @@
 from .models import User
-from flask import render_template, request, url_for
+from .form import RegistrationForm
+from flask import render_template, request
 from . import app
 
 
