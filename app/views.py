@@ -47,3 +47,18 @@ def success():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+
+@app.route('/profile')
+def profile():
+    if request.method == "POST":
+
+       
+        email = request.form.get('email')
+        password = request.form.get('psw')
+        if db.session.query(User).filter(User.email ==email & User.password==password).count()==1:
+           userProfile = db.session.query(User).filter(User.email ==email)
+
+        return render_template('profile.html', profile =userProfile)
+
+            
