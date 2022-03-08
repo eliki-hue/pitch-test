@@ -1,0 +1,2 @@
+Hello {{username}},
+We have noticed that you have registered to pitch_test. Welcome and have fun creating your 1 minute pitch and seeing other peoples pitch_test

@@ -1,4 +1,4 @@
-
+from .email import mail_message
 from .models import User
 from .form import RegistrationForm
 from flask import render_template, request, url_for
@@ -26,13 +26,24 @@ def success():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('psw')
-        print(username)
-        print(email)
-        print(password)
-        data = User(username,email,password)
+        if db.session.query(User).filter(User.email ==email).count()==0:
 
-        db.session.add(data)
-        db.session.commit()
+            print(username)
+            print(email)
+            print(password)
+            data = User(username,email,password)
 
-    return render_template('success.html')
+            db.session.add(data)
+            db.session.commit()
+            try:
+                mail_message(username)
+            except:
+                pass
+            return render_template('success.html')
     
+        return render_template('form.html', text ='User with that email address already exist')
+
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
