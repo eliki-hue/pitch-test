@@ -1,4 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h3>profile details</h3>
-{{profile.username}}
-{{profile.email}}
-{{profile.password}}
+{{user.username}}
+{{user.email}}
+{{user.password}}
+
+{% endblock %}

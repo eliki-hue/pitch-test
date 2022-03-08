@@ -1,8 +1,9 @@
 from .email import mail_message
 from .models import User
 from .form import RegistrationForm
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, flash
 from . import app, db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 
@@ -31,7 +32,7 @@ def success():
             print(username)
             print(email)
             print(password)
-            data = User(username,email,password)
+            data = User(username,email,password=generate_password_hash(password, method='sha256'))
 
             db.session.add(data)
             db.session.commit()
@@ -44,21 +45,23 @@ def success():
         return render_template('form.html', text ='User with that email address already exist')
 
 
-@app.route('/login')
+@app.route('/login' )
 def login():
     return render_template('login.html')
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET','POST'])
 def profile():
     if request.method == "POST":
 
        
         email = request.form.get('email')
         password = request.form.get('psw')
-        if db.session.query(User).filter(User.email ==email & User.password==password).count()==1:
-           userProfile = db.session.query(User).filter(User.email ==email)
 
-        return render_template('profile.html', profile =userProfile)
+        user = User.query.filter_by(email=email).first()
+        if not user or not check_password_hash(user.password, password):
+            text='Please check your login details and try again.'
+            return render_template('login.html', text=text)
+        return render_template('profile.html',user=user)
 
             
