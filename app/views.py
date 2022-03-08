@@ -1,10 +1,8 @@
-from crypt import methods
+
 from .models import User
 from .form import RegistrationForm
 from flask import render_template, request, url_for
 from . import app, db
-
-
 
 
 
@@ -21,7 +19,7 @@ def register():
 
     return render_template('form.html', Registration=RegistrationForm)
 
-@app.route('/success', methods=['POST'])
+@app.route('/success', methods=['GET','POST'])
 def success():
     if request.method == "POST":
 
@@ -37,3 +35,4 @@ def success():
         db.session.commit()
 
     return render_template('success.html')
+    

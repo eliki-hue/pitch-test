@@ -5,31 +5,34 @@ from flask_login import UserMixin
 
 
 
-class User:
+class User(db.Model):
     '''
     class that handles the user infomation
     '''
-    __table__ = 'users'
+    __tablename__ = 'users'
 
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
-   
-    profile_pic_path = db.Column(db.String())
-    password_hash = db.Column(db.String(255))
+    password= db.Column(db.String(255))
 
-    @property
-    def password(self):
-        raise AttributeError('You cannot read the password attribute')
+    def __init__(self, username,email,password):
+        self.username= username
+        self.email=email
+        self.password=password 
 
-    @password.setter
-    def password(self, password):
-        self.pass_secure = generate_password_hash(password)
+    # @property
+    # def password(self):
+    #     raise AttributeError('You cannot read the password attribute')
 
-    def verify_password(self,password):
-        return check_password_hash(self.pass_secure,password)
+    # @password.setter
+    # def password(self, password):
+    #     self.pass_secure = generate_password_hash(password)
 
-    from . import login_manager
+    # def verify_password(self,password):
+    #     return check_password_hash(self.pass_secure,password)
+
+    # from . import login_manager
 
     # @login_manager.user_loader
     # def load_user(user_id):
