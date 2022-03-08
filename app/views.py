@@ -1,6 +1,6 @@
 from .models import User
 from .form import RegistrationForm
-from flask import render_template, request
+from flask import render_template, request, url_for
 from . import app
 
 
@@ -15,8 +15,9 @@ def index():
 
 @app.route("/register")
 def register():
+    Registration= RegistrationForm()
 
-    return render_template('form.html')
+    return render_template('form.html', Registration=RegistrationForm)
 
 @app.route('/success', methods=['post'])
 def success():
