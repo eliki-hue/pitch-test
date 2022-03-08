@@ -1,11 +1,22 @@
+
 from flask import render_template, request
-from app import myapp
+from . import app
 
 
 
 
 
-@myapp.route('/')
+@app.route('/')
 def index():
-    heading = 'WELCOME TO MY APP'
-    render_template('index.html',heading =heading)
+
+    return render_template('index.html')
+
+
+@app.route("/register")
+def register():
+
+    return render_template('form.html')
+
+@app.route('/success', methods=['post'])
+def success():
+    return render_template('success.html')

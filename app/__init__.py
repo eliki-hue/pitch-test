@@ -1,6 +1,7 @@
 from flask import Flask
-from config import config_options
+from config import DevConfig
 from flask_bootstrap import Bootstrap
+from flask import render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_login import LoginManager
@@ -11,40 +12,49 @@ login_manager._session_protection ='strong'
 login_manager.login_view = 'auth.login'
 
 
-myapp =Flask(__name__)
-
-db = SQLAlchemy(myapp)
-
+db = SQLAlchemy()
 
 
 
 
 
 bootstrap = Bootstrap()
-bootstrap.init_app(myapp)
 
-# def initializer(config_name):
-#     myapp =Flask(__name__)
+app =Flask(__name__,instance_relative_config=True)
+
+app.config.from_object(DevConfig)
+
+bootstrap.init_app(app)
+db.init_app(app)
+
+from app import views
+
+# login_manager.init_app(app)
+
+
     
-#     myapp.config.from_object(config_options[config_name])
-
-#     bootstrap.init_app(myapp)
-#     db.init_app(myapp)
-
-#     from app import views
-#     # login_manager.init_app(app)
-
-
-#     return myapp
-
-# def create_app():
-#     app = Flask(__name__)
-
-#     with app.app_context():
-#         db.init_app(app)
-
-#     return app
+    
 
 
   
+# from flask import Flask
+# from config import DevConfig
+# from flask_bootstrap import Bootstrap
+
+
+
+# app =Flask(__name__, instance_relative_config=True)
+
+# Bootstrap(app)
+
+# # Setting up configuration
+# app.config.from_object(DevConfig)
+# app.config.from_pyfile('config.py')
+
+
+# from app import views
+
+
+# bootstrap = Bootstrap()
+
 
