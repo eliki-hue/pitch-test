@@ -49,13 +49,21 @@ class Pitch(db.Model):
     pitch =db.Column(db.String())
     sender_id = db.Column(db.Integer,db.ForeignKey('users.id')) 
     sender = db.Column(db.String())
+    upvote = db.Column(db.Integer)
+    downvote = db.Column(db.Integer)
+    comments = db.Column(db.String)
+    published_at = db.Column(db.DateTime, default = datetime.utcnow)
     
 
-    def __init__(self, category, pitch, sender,sender_id):
+    def __init__(self, category, pitch, sender,sender_id, upvote, downvote,comments,published_at):
         self.category = category
         self.sender_id = sender_id
         self.pitch = pitch 
         self.sender =sender
+        self.upvote = upvote
+        self.downvote = downvote
+        self.comments = comments
+        self.published_at =published_at
        
 
 
