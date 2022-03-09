@@ -11,10 +11,6 @@ from flask_mail import Mail
 from flask_login import LoginManager
 
 
-login_manager = LoginManager()
-login_manager._session_protection ='strong'
-login_manager.login_view = 'auth.login'
-
 
 db = SQLAlchemy()
 mail = Mail()
@@ -40,13 +36,21 @@ bootstrap.init_app(app)
 db.init_app(app)
 mail.init_app(app)
 
-
-
-
+login_manager = LoginManager()
+login_manager._session_protection ='strong'
+login_manager.login_view = 'auth.login'
+login_manager.init_app(app)
 from app import views
 
+from .models import User
 
-# login_manager.init_app(app)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(id))
+
+
+
+
 
 
     

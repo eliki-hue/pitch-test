@@ -1,7 +1,8 @@
+from flask_login import current_user, login_required, login_user,logout_user
 from .email import mail_message
 from .models import User
 from .form import RegistrationForm
-from flask import render_template, request, url_for, flash
+from flask import render_template, request, url_for, redirect
 from . import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -47,22 +48,45 @@ def success():
 
 @app.route('/login' )
 def login():
+
     return render_template('login.html')
 
 
 @app.route('/profile', methods=['GET','POST'])
 def profile():
     if request.method == "POST":
+        
 
        
         email = request.form.get('email')
+
         password = request.form.get('psw')
 
         user = User.query.filter_by(email=email).first()
         if not user or not check_password_hash(user.password, password):
             text='Please check your login details and try again.'
             return render_template('login.html', text=text)
-        return render_template('profile.html',user=user)
+        login_user(user, remember=remember)
+    return render_template('profile.html',user=user)
+            
+
+@app.route('/main')
+@login_required
+def main():
+    return render_template('main.html',name=current_user)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index.html'))
+
+            
+    
+
+
+            
 
             
 @app.route('/pitchForm')

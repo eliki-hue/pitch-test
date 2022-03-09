@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <form action="">
+                <form action="{{url_for('profile')}}" method="post">
                     <div class="mb-3">
                         <select class="form-select" aria-label="Default select example">
                             <option selected>choose category</option>
@@ -27,6 +27,7 @@
                         <label for="pitch" class="form-label">enter a 1 minute (450 characters) pitch here</label>
                         <textarea class="form-control" id="pitch" name="pitch" rows="5" cols="50" maxlength="450"></textarea>
                       </div>
+                      <button  type="submit" class="fas far-btn-primary">submit</button>
                 </form>
                 
             </div>
