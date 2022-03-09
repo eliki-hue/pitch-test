@@ -5,9 +5,16 @@
     <p>hello there welcome</p>
 
     <h1>hello</h1>
+{% for pitch in pitches %}
+<div>
+    <Var>{{pitch}}</Var><br>
 
-    <Var>{{pitches}}</Var>
+<button class="btn btn-sm btn-success" >upvote <i class="fa fa-thumbs-up" id="like"></i></button> 
+<button class="btn btn-sm hate" id="hate" >downvote <i class="fa fa-thumbs-down" id="dislike"></i></button> 
+
 </div>
+    
 
+{% endfor %}
 
 {% endblock %}
