@@ -12,7 +12,9 @@ from send_email import sender_email
 @app.route('/')
 def index():
 
-    return render_template('index.html')
+    record = Pitch.query.all()
+
+    return render_template('index.html',pitches =record)
 
 
 @app.route("/register")
@@ -38,8 +40,10 @@ def success():
 
             db.session.add(data)
             db.session.commit()
-            
-            sender_email(email, username)
+            try:
+                sender_email(email, username)
+            except:
+                pass
             
             return render_template('success.html')
     
@@ -83,7 +87,7 @@ def pitch():
          category = request.form.get('category')
          pitch = request.form.get('pitch')
          
-         data = Pitch(category, 100, pitch, sender)
+         data = Pitch(category, 100, pitch, sender,1,0,'great','2016-06-22 19:10:25-07')
          db.session.add(data)
          print(data)
          db.session.commit()
