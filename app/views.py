@@ -1,7 +1,8 @@
+from flask_login import login_required
 from .email import mail_message
 from .models import Pitch, User
 from .form import RegistrationForm
-from flask import render_template, request, url_for, flash
+from flask import render_template, request, url_for, flash,session
 from . import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -62,7 +63,10 @@ def profile():
         if not user or not check_password_hash(user.password, password):
             text='Please check your login details and try again.'
             return render_template('login.html', text=text)
+        session['email']=user.email
+    
         return render_template('profile.html',user=user)
+
 
             
 @app.route('/pitchForm')
@@ -70,16 +74,15 @@ def pitchForm():
 
     return render_template('pitchForm.html')
 
-@app.route('/pitch')
-def takePitch(user):
+@app.route('/pitch',methods=['GET','POST'])
+def pitch():
      if request.method == "POST":
-         sender= user.username
-         user_id =user.id
-       
+         useremail = request.form.get('email')
+         print(useremail)  
          category = request.form.get('category')
          pitch = request.form.get('pitch')
 
-         data = Pitch(category, pitch)
+         data = Pitch(category, pitch, 100, useremail)
          db.session.add(data)
          db.session.commit()
 

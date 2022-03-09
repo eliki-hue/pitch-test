@@ -16,7 +16,8 @@
             {{user.password}}
             </div>
             <div>
-                <button onclick="takePitch(user)" type="submit"></button>
+                <a href="{{url_for('pitchForm')}}">add pitch</a>
+                <button action='{{url_for('pitch')}}' type="submit">record pitch</button>
             </div>
         </div>
     </div>
