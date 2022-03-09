@@ -5,7 +5,7 @@ from flask_login import UserMixin
 
 
 
-class User(db.Model):
+class User(UserMixin,db.Model):
     '''
     class that handles the user infomation
     '''
