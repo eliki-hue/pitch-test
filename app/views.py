@@ -1,10 +1,11 @@
 from flask_login import login_required
-from .email import mail_message
+
 from .models import Pitch, User
 from .form import RegistrationForm
 from flask import render_template, request, url_for, flash,session
 from . import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
+from send_email import sender_email
 
 
 
@@ -37,10 +38,9 @@ def success():
 
             db.session.add(data)
             db.session.commit()
-            try:
-                mail_message(username)
-            except:
-                pass
+            
+            sender_email(email, username)
+            
             return render_template('success.html')
     
         return render_template('form.html', text ='User with that email address already exist')
@@ -76,16 +76,31 @@ def pitchForm():
 
 @app.route('/pitch',methods=['GET','POST'])
 def pitch():
+     
      if request.method == "POST":
-         useremail = request.form.get('email')
-         print(useremail)  
+         
+         sender = request.form.get('sender')
          category = request.form.get('category')
          pitch = request.form.get('pitch')
-
-         data = Pitch(category, pitch, 100, useremail)
+         
+         data = Pitch(category, 100, pitch, sender)
          db.session.add(data)
+         print(data)
          db.session.commit()
+
+     
+        
+        
 
 
      return render_template('pitch.html')
+
+@app.route('/display')
+def display():
+    record = Pitch.query.all()
+
+    return render_template('index.html',pitches =record)
+
+
+
 

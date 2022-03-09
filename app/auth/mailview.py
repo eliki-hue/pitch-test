@@ -1,4 +1,4 @@
-from ..email import mail_message
+from ...send_email import mail_message
 
 
 def register():
