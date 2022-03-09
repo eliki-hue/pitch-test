@@ -46,10 +46,13 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer, primary_key= True)
     category =db.Column(db.String(255))
-    sender = db.Column(db.String(255))
+    sender_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     pitch =db.column(db.String())
 
-
+    def __init__(self, category, pitch,sender_id):
+        self.category = category
+        self.sender_id = sender_id
+        self.pitch = pitch 
 
 
     def __repr__(self):

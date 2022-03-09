@@ -1,5 +1,5 @@
 from .email import mail_message
-from .models import User
+from .models import Pitch, User
 from .form import RegistrationForm
 from flask import render_template, request, url_for, flash
 from . import app, db
@@ -69,3 +69,20 @@ def profile():
 def pitchForm():
 
     return render_template('pitchForm.html')
+
+@app.route('/pitch')
+def takePitch(user):
+     if request.method == "POST":
+         sender= user.username
+         user_id =user.id
+       
+         category = request.form.get('category')
+         pitch = request.form.get('pitch')
+
+         data = Pitch(category, pitch)
+         db.session.add(data)
+         db.session.commit()
+
+
+     return render_template('pitch.html')
+

@@ -1,11 +1,26 @@
-<!-- {% extends 'base.html' %}
-
-
+{% extends 'base.html' %}
 
 {% block content %}
 
-<h2> Hello {{user}},</h2><br>
-<p><h3>You have been successfuly loged in</h3></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-4" style="background-color: aquamarine;">
+            
+            <div>
+                <h3>profile details</h3>
+            {{user.username}}
+            {{user.email}}
+            {{user.password}}
+            </div>
+            <div>
+                <button onclick="takePitch(user)" type="submit"></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-{% endblock %} -->
+{% endblock %}
