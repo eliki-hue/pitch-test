@@ -88,7 +88,7 @@ def pitch():
          category = request.form.get('category')
          pitch = request.form.get('pitch')
          
-         data = Pitch(category, 100, pitch, sender,1,0,'great','2016-06-22 19:10:25-07')
+         data = Pitch(category, pitch, sender,1,0,0,'great','2016-06-22 19:10:25-07')
          db.session.add(data)
          print(data)
          db.session.commit()
