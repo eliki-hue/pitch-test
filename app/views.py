@@ -68,8 +68,9 @@ def profile():
             text='Please check your login details and try again.'
             return render_template('login.html', text=text)
         session['email']=user.email
-    
-        return render_template('profile.html',user=user)
+        id = user.username
+        mypitch= Pitch.query.filter_by(id=id)  
+        return render_template('profile.html',user=user, mypitch=mypitch)
 
 
             
