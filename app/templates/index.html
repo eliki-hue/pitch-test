@@ -1,31 +1,65 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-sm-2"></div>    
-       <div style="background-color: rgb(134, 179, 218);">
-            {% for pitch in pitches %}
+    <div class="container">
+        <div class="row"  style="background-color: rgb(134, 179, 218);">
+            
         
-            <div class="col-sm-8" >
-                <Var>{{pitch}}</Var><br>
-            </div>
-            <div>
-                <div class="col-sm-2">
-                    <button class="btn btn-sm btn-success" >upvote <i class="fa fa-thumbs-up" id="like"></i></button> 
-                    <button class="btn btn-sm hate" id="hate" >downvote <i class="fa fa-thumbs-down" id="dislike"></i></button> 
-
-                </div>
-
+                
+            
+            <div class="col-sm-3">
+                <h3>Pitch</h3>
+                {% for pitch in pitches %}
+            
+                {{pitch.sender}}</p>
                 {% endfor %}
+            </div>
+            
+        <div class="col-sm-1">
+            <h3>upvotes</h3>
+            
+            {% for pitch in pitches %}
+                    <button class="btn btn-sm btn-success" >{{pitch.upvote}} <i class="fa fa-thumbs-up" id="like">Upvotes</i></button> 
+                   
+            {% endfor %}
         </div>
-       </div>
-       
+            <div class="col-sm-2">
+            <h3>downvotes</h3>
+            
+                {% for pitch in pitches %}
+                        <button class="btn btn-sm btn-neutral" >{{pitch.downvote}} <i class="fa fa-thumbs-up" id="like">Downvotes</i></button> 
+                       
+                {% endfor %}
+            </div>
+
+                    <div class="col-sm-2">
+                        <h3>comments</h3>
+                        {% for pitch in pitches %}
+                        
+                    <p>{{pitch.comments}}</p>  
+                    {% endfor %}             
+                    </div>
+                    <div class="col-sm-2">
+                        <h3>comments</h3>
+                        {% for pitch in pitches %}
+                    
+                        {{pitch.sender}}</p>
+                        {% endfor %}
+                    </div> 
+                    <div class="col-sm-2">
+                        <h3>Date published</h3>
+                        {% for pitch in pitches %}
+                    
+                        {{pitch.published_at}}</p>
+                        {% endfor %}
+                        <br>
+                    </div>
+                    
+        
+
+        
+
+
+        </div>
     </div>
-</div>
-
-    
-
-
-
 {% endblock %}
