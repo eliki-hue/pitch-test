@@ -68,8 +68,8 @@ def profile():
             text='Please check your login details and try again.'
             return render_template('login.html', text=text)
         session['email']=user.email
-        id = user.username
-        mypitch= Pitch.query.filter_by(id=id)  
+        name = user.username
+        mypitch= Pitch.query.filter_by(sender=name)  
         return render_template('profile.html',user=user, mypitch=mypitch)
 
 
@@ -93,18 +93,17 @@ def pitch():
          print(data)
          db.session.commit()
 
-     
-        
-        
-
-
-     return render_template('pitch.html')
+     return render_template('pitchsuccess.html')
 
 @app.route('/display')
 def display():
     record = Pitch.query.all()
 
     return render_template('index.html',pitches =record)
+
+@app.route('/pitchsuccess')
+def pitchsuccess():
+    return render_template('pitchsuccess.html')
 
 
 
