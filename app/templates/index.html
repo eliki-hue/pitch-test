@@ -3,26 +3,29 @@
 {% block content %}
 <div class="container">
     <div class="row">
-
-        {% for pitch in pitches %}
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <Var>{{pitch}}</Var><br>
-        </div>
-        <div>
-            <div class="col-sm-2">
-                <button class="btn btn-sm btn-success" >upvote <i class="fa fa-thumbs-up" id="like"></i></button> 
-                <button class="btn btn-sm hate" id="hate" >downvote <i class="fa fa-thumbs-down" id="dislike"></i></button> 
-
+        <div class="col-sm-2"></div>    
+       <div style="background-color: rgb(134, 179, 218);">
+            {% for pitch in pitches %}
+        
+            <div class="col-sm-8" >
+                <Var>{{pitch}}</Var><br>
             </div>
+            <div>
+                <div class="col-sm-2">
+                    <button class="btn btn-sm btn-success" >upvote <i class="fa fa-thumbs-up" id="like"></i></button> 
+                    <button class="btn btn-sm hate" id="hate" >downvote <i class="fa fa-thumbs-down" id="dislike"></i></button> 
 
+                </div>
 
+                {% endfor %}
         </div>
+       </div>
+       
     </div>
 </div>
 
     
 
-{% endfor %}
+
 
 {% endblock %}
