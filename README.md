@@ -1,7 +1,7 @@
 # pitch-test
 
 
-**live link:** https://git.heroku.com/desolate-island-89467.git
+**live link:** https://desolate-island-89467.herokuapp.com/
 
 **Project name:** pitch-test
 
