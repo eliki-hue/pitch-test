@@ -25,8 +25,7 @@ Flask-Uploads==0.2.1
 Flask-WTF==0.14.2
 greenlet==1.1.2
 gunicorn==20.1.0
-heroku==0.1.4
-heroku3==5.1.4
+
 idna==3.3
 importlib-metadata==4.11.2
 importlib-resources==5.4.0
